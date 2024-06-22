@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live View</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        margin: 0;
+      }
+      .sidebar {
+        background-color: #4caf50;
+        padding: 15px;
+        width: 200px;
+        height: 100vh;
+        color: white;
+        display: flex;
+        flex-direction: column;
+      }
+      .sidebar a {
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        margin: 5px 0;
+        text-align: center;
+        background-color: #66bb6a;
+        border-radius: 5px;
+      }
+      .sidebar a:hover {
+        background-color: #5ca85c;
+      }
+      .content {
+        padding: 20px;
+        flex-grow: 1;
+        background-color: #f0f0f0;
+      }
+      h2 {
+        color: #333;
+      }
+      .live-view-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+      .video-frame {
+        width: 80%;
+        height: 400px;
+        background-color: #e0e0e0;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #888;
+        font-size: 24px;
+      }
+      .video-frame video {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2><a href="index.html">Home</a></h2>
+      <a href="temperature.html">Temperature</a>
+      <a href="soil-moisture.html">Soil Moisture</a>
+      <a href="humidity.html">Humidity</a>
+      <a href="light.html">Light</a>
+      <a href="live-view.html">Live View</a>
+    </div>
+    <div class="content">
+      <h2>Live View</h2>
+      <div class="live-view-container">
+        <div class="video-frame" id="video-frame">Camera Not Detected</div>
+      </div>
+    </div>
+
+    <script>
+      function checkCamera() {
+        const videoFrame = document.getElementById("video-frame");
+
+        // Simulating camera detection
+        const cameraDetected = true; // Change this to simulate camera detection
+
+        if (cameraDetected) {
+          videoFrame.innerHTML = "<video autoplay></video>";
+          const video = videoFrame.querySelector("video");
+
+          // Replace this with actual stream from ESP32 camera
+          const streamUrl = "http://your-esp32-camera-url/stream"; // Replace with actual URL
+          video.src = streamUrl;
+        }
+      }
+
+      checkCamera();
+    </script>
+  </body>
+</html>

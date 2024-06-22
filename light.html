@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Light</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        margin: 0;
+      }
+      .sidebar {
+        background-color: #4caf50;
+        padding: 15px;
+        width: 200px;
+        height: 100vh;
+        color: white;
+        display: flex;
+        flex-direction: column;
+      }
+      .sidebar a {
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        margin: 5px 0;
+        text-align: center;
+        background-color: #66bb6a;
+        border-radius: 5px;
+      }
+      .sidebar a:hover {
+        background-color: #5ca85c;
+      }
+      .content {
+        padding: 20px;
+        flex-grow: 1;
+        background-color: #f0f0f0;
+      }
+      h2 {
+        color: #333;
+      }
+      .light-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+      .light-bar {
+        width: 80%;
+        height: 50px;
+        background-color: #e0e0e0;
+        border-radius: 25px;
+        position: relative;
+        margin: 20px 0;
+      }
+      .light-bar-fill {
+        height: 100%;
+        border-radius: 25px;
+        background-color: #66bb6a;
+        transition: width 0.5s ease-in-out;
+      }
+      .light-value {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        color: #fff;
+      }
+      .legend {
+        margin-top: 20px;
+        text-align: center;
+      }
+      .legend div {
+        margin: 5px 0;
+      }
+      .legend span {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+      }
+      .too-dim {
+        background-color: #42a5f5;
+      }
+      .optimal {
+        background-color: #66bb6a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2><a href="index.html">Home</a></h2>
+      <a href="temperature.html">Temperature</a>
+      <a href="soil-moisture.html">Soil Moisture</a>
+      <a href="humidity.html">Humidity</a>
+      <a href="light.html">Light</a>
+      <a href="live-view.html">Live View</a>
+    </div>
+    <div class="content">
+      <h2>Light</h2>
+      <div class="light-container">
+        <div class="light-bar">
+          <div class="light-bar-fill" id="light-fill" style="width: 45%">
+            <div class="light-value" id="light-value">4500 lux</div>
+          </div>
+        </div>
+        <div class="legend">
+          <div><span class="too-dim"></span> Below 5000 lux: Too Dim</div>
+          <div><span class="optimal"></span> Above 5000 lux: Optimal</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function updateLight(value) {
+        const maxLight = 20000; // Assuming max value is 10000 lux
+        const percentage = (value / maxLight) * 100;
+        const fill = document.getElementById("light-fill");
+        const lightValue = document.getElementById("light-value");
+
+        fill.style.width = `${percentage}%`;
+        lightValue.textContent = `${value} lux`;
+
+        if (value < 5000) {
+          fill.style.backgroundColor = "#42a5f5";
+        } else {
+          fill.style.backgroundColor = "#66bb6a";
+        }
+      }
+
+      // Update light value
+      updateLight(4500); // Example light value in lux
+    </script>
+  </body>
+</html>

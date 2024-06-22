@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temperature</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        margin: 0;
+      }
+      .sidebar {
+        background-color: #4caf50;
+        padding: 15px;
+        width: 200px;
+        height: 100vh;
+        color: white;
+        display: flex;
+        flex-direction: column;
+      }
+      .sidebar a {
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        margin: 5px 0;
+        text-align: center;
+        background-color: #66bb6a;
+        border-radius: 5px;
+      }
+      .sidebar a:hover {
+        background-color: #5ca85c;
+      }
+      .content {
+        padding: 20px;
+        flex-grow: 1;
+        background-color: #f0f0f0;
+      }
+      h2 {
+        color: #333;
+      }
+      .temperature-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+      .temperature-bar {
+        width: 80%;
+        height: 50px;
+        background-color: #e0e0e0;
+        border-radius: 25px;
+        position: relative;
+        margin: 20px 0;
+      }
+      .temperature-bar-fill {
+        height: 100%;
+        border-radius: 25px;
+        background-color: #66bb6a;
+        transition: width 0.5s ease-in-out;
+      }
+      .temperature-value {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        color: #fff;
+      }
+      .legend {
+        margin-top: 20px;
+        text-align: center;
+      }
+      .legend div {
+        margin: 5px 0;
+      }
+      .legend span {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+      }
+      .too-cold {
+        background-color: #42a5f5;
+      }
+      .optimal {
+        background-color: #66bb6a;
+      }
+      .too-hot {
+        background-color: #ef5350;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2><a href="index.html">Home</a></h2>
+      <a href="temperature.html">Temperature</a>
+      <a href="soil-moisture.html">Soil Moisture</a>
+      <a href="humidity.html">Humidity</a>
+      <a href="light.html">Light</a>
+      <a href="live-view.html">Live View</a>
+    </div>
+    <div class="content">
+      <h2>Temperature</h2>
+      <div class="temperature-container">
+        <div class="temperature-bar">
+          <div
+            class="temperature-bar-fill"
+            id="temperature-fill"
+            style="width: 50%"
+          >
+            <div class="temperature-value" id="temperature-value">25°C</div>
+          </div>
+        </div>
+        <div class="legend">
+          <div><span class="too-cold"></span> Below 20°C: Too Cold</div>
+          <div><span class="optimal"></span> 20-30°C: Optimal</div>
+          <div><span class="too-hot"></span> Above 30°C: Too Hot</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function updateTemperature(value) {
+        const maxTemp = 50;
+        const percentage = (value / maxTemp) * 100;
+        const fill = document.getElementById("temperature-fill");
+        const tempValue = document.getElementById("temperature-value");
+
+        fill.style.width = `${percentage}%`;
+        tempValue.textContent = `${value}°C`;
+
+        if (value < 20) {
+          fill.style.backgroundColor = "#42a5f5";
+        } else if (value <= 30) {
+          fill.style.backgroundColor = "#66bb6a";
+        } else {
+          fill.style.backgroundColor = "#ef5350";
+        }
+      }
+
+      // Update temperature value
+      updateTemperature(25); // Contoh suhu 25°C
+    </script>
+  </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IoT Plant Status</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        margin: 0;
+      }
+      .sidebar {
+        background-color: #4caf50;
+        padding: 15px;
+        width: 200px;
+        height: 100vh;
+        color: white;
+        display: flex;
+        flex-direction: column;
+      }
+      .sidebar a {
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        margin: 5px 0;
+        text-align: center;
+        background-color: #66bb6a;
+        border-radius: 5px;
+      }
+      .content {
+        padding: 20px;
+        flex-grow: 1;
+        background-color: #f0f0f0;
+      }
+      .plant-status {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .status-card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px;
+        flex: 1 1 40%;
+        max-width: 45%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .progress-bar {
+        background-color: #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+        height: 20px;
+        width: 100%;
+        margin-top: 10px;
+      }
+      .progress-bar div {
+        height: 100%;
+        background-color: #66bb6a;
+      }
+      .plant-selection {
+        background-color: #4caf50;
+        color: white;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center align content */
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .plant-selection button {
+        margin: 10px 0;
+        padding: 10px 20px;
+        background-color: #66bb6a;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .plant-selection button:hover {
+        background-color: #5ca85c;
+      }
+      .statistic {
+        background-color: white;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .statistic div {
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>Home</h2>
+      <a href="temperature.html">Temperature</a>
+      <a href="soil-moisture.html">Soil Moisture</a>
+      <a href="humidity.html">Humidity</a>
+      <a href="light.html">Light</a>
+      <a href="live-view.html">Live View</a>
+    </div>
+    <div class="content">
+      <h2>Plant Status</h2>
+      <div class="plant-status">
+        <div class="status-card">
+          <h3>Light</h3>
+          <div class="progress-bar"><div style="width: 70%"></div></div>
+        </div>
+        <div class="status-card">
+          <h3>Soil Moisture</h3>
+          <div class="progress-bar"><div style="width: 60%"></div></div>
+        </div>
+        <div class="status-card">
+          <h3>Temperature</h3>
+          <div class="progress-bar"><div style="width: 50%"></div></div>
+        </div>
+        <div class="status-card">
+          <h3>Humidity</h3>
+          <div class="progress-bar"><div style="width: 61%"></div></div>
+        </div>
+      </div>
+      <div class="plant-selection">
+        <h3>Live View</h3>
+        <button>Start Live View</button>
+      </div>
+    </div>
+  </body>
+</html>
